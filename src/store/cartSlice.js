@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-function CreateItem(id, name, price, totalPrice, quantity=1, description) {
+function CreateItem(id, name, price, description) {
     this.id = id;
     this.name = name;
     this.price = price;
-    this.quantity = quantity;
-    this.totalPrice = price * quantity;
+    this.quantity = 1;
+    this.totalPrice = price * this.quantity;
     this.description = description;
 }
 
@@ -19,6 +19,9 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem (state,action) {
+            console.log(state);
+            console.log(action);
+
             const idx = state.item.findIndex(item => item.id === action.id);
             if(idx !== -1) {
                 let item = state.item[idx];
@@ -28,7 +31,8 @@ const cartSlice = createSlice({
                     totalPrice: item.price * this.quantity ,
                 }
             } else {
-                const newItem = new CreateItem(...action.payload);
+                const newItem = new CreateItem(action.payload.id, action.payload.title, action.payload.price, action.payload.description);
+                console.log(newItem);
                 state.item.unshift(newItem);
             }
     },
