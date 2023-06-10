@@ -5,6 +5,15 @@ const ProductItem = (props) => {
     console.log(props);
     const { id, title, price, description } = props;
 
+    const addToCartHandler = () => {
+        const item = {
+            id,
+            title,
+            price,
+            description
+        }
+    }
+
     return (
         <li className={classes.item} id={id}>
             <Card>
@@ -14,7 +23,7 @@ const ProductItem = (props) => {
                 </header>
                 <p>{description}</p>
                 <div className={classes.actions}>
-                    <button>Add to Cart</button>
+                    <button onClick={()=>{}}>Add to Cart</button>
                 </div>
             </Card>
         </li>
