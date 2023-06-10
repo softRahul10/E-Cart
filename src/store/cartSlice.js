@@ -21,7 +21,6 @@ const cartSlice = createSlice({
         addItem (state,action) {
 
             const idx = state.item.findIndex(item => item.id === action.payload.id);
-            console.log(idx);
             if(idx !== -1) {
                 let item = state.item[idx];
                 state.item[idx] = {
@@ -31,11 +30,19 @@ const cartSlice = createSlice({
                 }
             } else {
                 const newItem = new CreateItem(action.payload.id, action.payload.title, action.payload.price, action.payload.description);
-                console.log(newItem);
                 state.item.unshift(newItem);
             }
     },
-        increaseQuantity () {},
+        increaseQuantity (state,action) {
+            const idx = state.item.findIndex(item => item.id === action.payload.id);
+            let item = state.item[idx];
+                state.item[idx] = {
+                    ...item,
+                    quantity: item.quantity + 1,
+                    totalPrice: item.price * (state.item[idx].quantity  + 1) ,
+                }
+
+        },
         decreaseQuantity () {},
     }
 });
