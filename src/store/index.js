@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+// Cart state
+import { cartShowReducer } from './cartShowSlice';
+
 const store = configureStore({
-    // reducers will be added here..
+    reducer: cartShowReducer    
 });
 
 export default store;
