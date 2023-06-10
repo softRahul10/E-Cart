@@ -2,10 +2,11 @@ import classes from './ProductItem.module.css';
 import Card from '../UI/Card';
 
 const ProductItem = (props) => {
-    const { title, price, description } = props;
+    console.log(props);
+    const { id, title, price, description } = props;
 
     return (
-        <li className={classes.item}>
+        <li className={classes.item} id={id}>
             <Card>
                 <header>
                     <h3>{title}</h3>
