@@ -13,6 +13,10 @@ const CartItem = (props) => {
         dispatch(cartSliceActions.increaseQuantity({ id:id}));
     }
 
+    const itemDecrementHandler = () => {
+        dispatch(cartSliceActions.decreaseQuantity({ id:id}));
+    }
+
     return (
         <li className={classes.item}>
             <header>
@@ -27,7 +31,7 @@ const CartItem = (props) => {
                     x <span>{quantity}</span>
                 </div>
                 <div className={classes.actions}>
-                    <button>-</button>
+                    <button onClick={itemDecrementHandler}>-</button>
                     <button onClick={itemIncrementHandler}>+</button>
                 </div>
             </div>
