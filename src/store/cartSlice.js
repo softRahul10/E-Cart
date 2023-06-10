@@ -19,16 +19,15 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem (state,action) {
-            console.log(state);
-            console.log(action);
 
-            const idx = state.item.findIndex(item => item.id === action.id);
+            const idx = state.item.findIndex(item => item.id === action.payload.id);
+            console.log(idx);
             if(idx !== -1) {
                 let item = state.item[idx];
                 state.item[idx] = {
                     ...item,
                     quantity: item.quantity + 1,
-                    totalPrice: item.price * this.quantity ,
+                    totalPrice: item.price * (state.item[idx].quantity  + 1) ,
                 }
             } else {
                 const newItem = new CreateItem(action.payload.id, action.payload.title, action.payload.price, action.payload.description);
